@@ -21,4 +21,36 @@
 		<PackageReference Include="Scrutor.Extensions.HttpClient" Version="5.1.2-alpha.2" />
 	</ItemGroup>
 
+	<PropertyGroup Label="Package">
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Title>TVDB Api Client</Title>
+		<Authors>Chrison Simtian</Authors>
+		<Copyright>$([System.DateTime]::Now.ToString(yyyy)) - $(Company)</Copyright>
+		<Description>C# Api Client (HttpClient) for TVDB Api</Description>
+		<PackageProjectUrl>https://github.com/ChrisonSimtian/TvdbApi</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/ChrisonSimtian/TvdbApi.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+		<IncludeSymbols>True</IncludeSymbols>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<!-- This defines a default versioning -->
+	<PropertyGroup Label="Versioning">
+		<Version>4.7.10-alpha.1</Version>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
 </Project>
