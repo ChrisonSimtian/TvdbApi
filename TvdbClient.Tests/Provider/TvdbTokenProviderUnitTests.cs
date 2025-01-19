@@ -47,7 +47,7 @@ public class TvdbTokenProviderUnitTests
 
         /* Validate Data, Token should be populated and valid for a month */
         token.Should().NotBeNull();
-        token.TokenType.Should().Be("Bearer");
+        Models.Token.TokenType.Should().Be("Bearer");
         token.CreationTimestamp.Should().BeBefore(DateTime.Now);
         token.IsTokenExpired.Should().BeFalse();
         token.TokenExpiryDate.Should().BeCloseTo(DateTime.Today.AddMonths(1), TimeSpan.FromDays(1)); // should be roughly a month, +/- a day

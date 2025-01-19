@@ -55,7 +55,7 @@ public class AuthenticationUnitTests
         /* Validate Data, Token should be populated and valid for a month */
         result.Data.Should().NotBeNull();
         var token = result.Data;
-        token.TokenType.Should().Be("Bearer");
+        Token.TokenType.Should().Be("Bearer");
         token.CreationTimestamp.Should().BeBefore(DateTime.Now);
         token.IsTokenExpired.Should().BeFalse();
         token.TokenExpiryDate.Should().BeCloseTo(DateTime.Today.AddMonths(1), TimeSpan.FromDays(1)); // should be roughly a month, +/- a day

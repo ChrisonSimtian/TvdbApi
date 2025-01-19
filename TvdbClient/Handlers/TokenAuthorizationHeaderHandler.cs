@@ -1,22 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Tvdb.Handlers;
 
-namespace Tvdb.Handlers;
+/// <summary>
+/// Handler to add Authorization Header to the request
+/// </summary>
+/// <param name="tokenProvider"></param>
 public class TokenAuthorizationHeaderHandler(ITokenProvider tokenProvider) : DelegatingHandler
 {
-    #region Properties
-    public ITokenProvider TokenProvider { get; } = tokenProvider;
-    #endregion
-
     #region Overrides
+    /// <summary>
+    /// Send the request with the Authorization Header
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
     protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
     {
-        var token = await TokenProvider.AcquireTokenAsync(cancellationToken);
+        // Acquire the token
+        var token = await tokenProvider.AcquireTokenAsync(cancellationToken);
 
-        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(token.TokenType, token.AccessToken);
+        // Add the Authorization Header to the request
+        request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(Models.Token.TokenType, token.AccessToken);
         return await base.SendAsync(request, cancellationToken);
     }
     #endregion

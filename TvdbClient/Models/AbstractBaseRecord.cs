@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Tvdb.Models;
 
-namespace Tvdb.Models;
-
+/// <summary>
+/// Base Record for all TVDB Records
+/// </summary>
 public abstract class AbstractBaseRecord
 {
-    private IDictionary<string, object> _additionalProperties;
+    /// <summary>
+    /// backing field for <see cref="AdditionalProperties"/>"/>
+    /// </summary>
+    private IDictionary<string, object>? _additionalProperties;
 
+    /// <summary>
+    /// Contains additional Properties that havent been mapped yet
+    /// </summary>
     [System.Text.Json.Serialization.JsonExtensionData]
     public IDictionary<string, object> AdditionalProperties
     {
-        get { return _additionalProperties ?? (_additionalProperties = new Dictionary<string, object>()); }
-        set { _additionalProperties = value; }
+        get => _additionalProperties ??= new Dictionary<string, object>();
+        set => _additionalProperties = value;
     }
 }

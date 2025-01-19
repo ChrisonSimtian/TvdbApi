@@ -11,29 +11,48 @@ namespace Tvdb.Models;
 /// </summary>
 public class Links
 {
-
+    /// <summary>
+    /// Link to the previous page
+    /// </summary>
     [System.Text.Json.Serialization.JsonPropertyName("prev")]
-    public string Prev { get; set; }
+    public string PreviousPage { get; set; }
 
+    /// <summary>
+    /// Link to the current page
+    /// </summary>
     [System.Text.Json.Serialization.JsonPropertyName("self")]
     public string Self { get; set; }
 
+    /// <summary>
+    /// Link to the next page
+    /// </summary>
     [System.Text.Json.Serialization.JsonPropertyName("next")]
-    public string Next { get; set; }
+    public string NextPage { get; set; }
 
+    /// <summary>
+    /// Total number of items
+    /// </summary>
     [System.Text.Json.Serialization.JsonPropertyName("total_items")]
-    public int? Total_items { get; set; }
+    public int? ItemCount { get; set; }
 
+    /// <summary>
+    /// Number of Items per Page
+    /// </summary>
     [System.Text.Json.Serialization.JsonPropertyName("page_size")]
-    public int? Page_size { get; set; }
+    public int? PageSize { get; set; }
 
-    private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
+    /// <summary>
+    /// backing field for <see cref="AdditionalProperties"/>"/>
+    /// </summary>
+    private IDictionary<string, object>? _additionalProperties;
 
+    /// <summary>
+    /// Contains additional Properties that havent been mapped yet
+    /// </summary>
     [System.Text.Json.Serialization.JsonExtensionData]
-    public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
+    public IDictionary<string, object> AdditionalProperties
     {
-        get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-        set { _additionalProperties = value; }
+        get => _additionalProperties ??= new Dictionary<string, object>();
+        set => _additionalProperties = value;
     }
-
 }

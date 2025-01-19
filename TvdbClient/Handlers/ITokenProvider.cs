@@ -9,6 +9,9 @@ namespace Tvdb.Handlers;
 public interface ITokenProvider
 {
     #region Properties
+    /// <summary>
+    /// The current <see cref="Token"/>
+    /// </summary>
     Token Token { get; }
     #endregion
 
@@ -16,7 +19,7 @@ public interface ITokenProvider
     /// <summary>
     /// Acquire a <see cref="Token"/>
     /// </summary>
-    /// <returns></returns>
+    /// <returns><see cref="Token"/></returns>
     public Task<Token> AcquireTokenAsync(CancellationToken cancellationToken = default);
     #endregion
 }
