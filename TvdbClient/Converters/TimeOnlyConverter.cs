@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
+﻿using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Tvdb.Converters;
 
@@ -17,7 +12,9 @@ public class TimeOnlyConverter(string? serializationFormat) : JsonConverter<Time
     private const string dateFormat = "HH:mm:ss";
 
     #region Constructor
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
     public TimeOnlyConverter() : this(null) { }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
     #endregion
 
     #region Methods

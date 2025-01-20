@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Tvdb.Configuration;
@@ -12,12 +8,24 @@ using Tvdb.Models;
 
 namespace Tvdb.Provider;
 
+/// <summary>
+/// Token Provider for TVDB
+/// </summary>
+/// <param name="options"></param>
+/// <param name="logger"></param>
 public class TvdbTokenProvider(IOptions<TvdbConfiguration> options, ILogger<TvdbTokenProvider> logger) : ITokenProvider
 {
     #region Properties
+    /// <inheritdoc/>
     public TvdbConfiguration Config => Options.Value;
+
+    /// <inheritdoc/>
     public IOptions<TvdbConfiguration> Options { get; } = options;
+
+    /// <inheritdoc/>
     public ILogger<TvdbTokenProvider> Logger { get; } = logger;
+
+    /// <inheritdoc/>
     public Token Token { get; internal set; }
     #endregion
 
@@ -39,12 +47,17 @@ public class TvdbTokenProvider(IOptions<TvdbConfiguration> options, ILogger<Tvdb
 
                 var responseBody = await response.Content.ReadAsStringAsync(cancellationToken);
                 var responseData = JsonSerializer.Deserialize<ApiResponseWrapper<Token>>(responseBody);
-                if(!responseData.IsSuccess)
+                if(responseData is null)
                 {
-                    Logger.LogError($"Failed acquiring Token. {responseData.ErrorMessage}");
+                    Logger.LogError("Failed acquiring Token.");
+                    throw new Exception("Failed acquiring Token.");
+                }
+                if (responseData is not null && !responseData.IsSuccess)
+                {
+                    Logger.LogError("Failed acquiring Token. {errorMessage}", responseData.ErrorMessage);
                     throw new Exception($"Failed acquiring Token. {responseData.ErrorMessage}");
                 }
-                var token = responseData.Data;
+                var token = responseData!.Data;
                 if (token is null)
                 {
                     Logger.LogError("Failed deserializing Token response");

@@ -6,6 +6,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Tvdb.Models;
+
 /// <summary>
 /// base movie record
 /// </summary>

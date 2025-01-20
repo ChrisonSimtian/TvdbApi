@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Tvdb.Models;
+﻿namespace Tvdb.Models;
 
 /// <summary>
 /// Links for next, previous and current record

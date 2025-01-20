@@ -8,6 +8,7 @@ namespace Tvdb.Models;
 public class EpisodeExtendedRecord : EpisodeBaseRecord
 {
     [JsonPropertyName("awards")]
+
     public ICollection<AwardBaseRecord> Awards { get; set; }
 
     [JsonPropertyName("characters")]

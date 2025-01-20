@@ -25,32 +25,9 @@ namespace Tvdb.Models
 {
     using System = global::System;
 
-    public class LoginRequestBody
-    {
-
-        [System.Text.Json.Serialization.JsonPropertyName("apikey")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Apikey { get; set; }
-
-        [System.Text.Json.Serialization.JsonPropertyName("pin")]
-        public string Pin { get; set; }
-
-        private System.Collections.Generic.IDictionary<string, object> _additionalProperties;
-
-        [System.Text.Json.Serialization.JsonExtensionData]
-        public System.Collections.Generic.IDictionary<string, object> AdditionalProperties
-        {
-            get { return _additionalProperties ?? (_additionalProperties = new System.Collections.Generic.Dictionary<string, object>()); }
-            set { _additionalProperties = value; }
-        }
-
-    }
-
-
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Data2
     {
-
         [System.Text.Json.Serialization.JsonPropertyName("series")]
         public SeriesBaseRecord Series { get; set; }
 

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Tvdb.Configuration;
 using Tvdb.Handlers;
@@ -11,8 +6,16 @@ using Tvdb.Provider;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
+/// <summary>
+/// Bootstrapper for TVDB Client
+/// </summary>
 public static class Bootstrapper
 {
+    /// <summary>
+    /// Add the TVDB Client to the configuration
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <returns></returns>
     public static IConfigurationBuilder AddTvdbClient(this IConfigurationBuilder builder)
     {
         var config = builder
@@ -22,6 +25,12 @@ public static class Bootstrapper
         return builder;
     }
 
+    /// <summary>
+    /// Add the TVDB Client to the service collection
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <param name="config"></param>
+    /// <returns></returns>
     public static IServiceCollection AddTvdbClient(this IServiceCollection builder, IConfiguration config)
     {
         /* Inject TVDB Clients */
@@ -57,7 +66,7 @@ public static class Bootstrapper
     {
         if (string.IsNullOrWhiteSpace(inputString)) return string.Empty;
 
-        if (!inputString.EndsWith("/")) inputString += "/";
+        if (!inputString.EndsWith('/')) inputString += '/';
         return inputString;
     }
 }

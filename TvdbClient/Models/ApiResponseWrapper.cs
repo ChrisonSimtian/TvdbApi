@@ -18,9 +18,7 @@ public class ApiResponseWrapper<TDataType>
     /// </summary>
     /// <remarks>Can be success, failure</remarks>
     [System.Text.Json.Serialization.JsonPropertyName("status")]
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public string Status { get; set; }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
     /// <summary>
     /// Is Response a success?
@@ -59,7 +57,5 @@ public class ApiResponseWrapper<TDataType>
     /// O-Data Links for next, previous and current record
     /// </summary>
     [System.Text.Json.Serialization.JsonPropertyName("links")]
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
     public Links Links { get; set; }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 }
