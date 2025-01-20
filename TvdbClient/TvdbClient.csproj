@@ -40,7 +40,7 @@
 
 	<!-- This defines a default versioning -->
 	<PropertyGroup Label="Versioning">
-		<Version>4.7.10-alpha.3</Version>
+		<Version>4.7.10-alpha.4</Version>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
