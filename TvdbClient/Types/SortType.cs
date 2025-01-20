@@ -1,12 +1,21 @@
-﻿namespace Tvdb.Types;
+﻿using System.Runtime.Serialization;
 
+namespace Tvdb.Types;
+
+/// <summary>
+/// Sortation Direction
+/// </summary>
 public enum SortType
 {
+    /// <summary>
+    /// Ascending
+    /// </summary>
+    [EnumMember(Value = @"asc")]
+    Ascending = 0,
 
-    [System.Runtime.Serialization.EnumMember(Value = @"asc")]
-    Asc = 0,
-
-    [System.Runtime.Serialization.EnumMember(Value = @"desc")]
-    Desc = 1,
-
+    /// <summary>
+    /// Descending
+    /// </summary>
+    [EnumMember(Value = @"desc")]
+    Descending = 1,
 }

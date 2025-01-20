@@ -1,12 +1,21 @@
-﻿namespace Tvdb.Types;
+﻿using System.Runtime.Serialization;
 
+namespace Tvdb.Types;
+
+/// <summary>
+/// The action to perform on an update.
+/// </summary>
 public enum UpdateAction
 {
-
-    [System.Runtime.Serialization.EnumMember(Value = @"delete")]
+    /// <summary>
+    /// Got Deleted
+    /// </summary>
+    [EnumMember(Value = @"delete")]
     Delete = 0,
 
-    [System.Runtime.Serialization.EnumMember(Value = @"update")]
+    /// <summary>
+    /// Got Updated
+    /// </summary>
+    [EnumMember(Value = @"update")]
     Update = 1,
-
 }

@@ -5555,7 +5555,7 @@ namespace Tvdb.Clients
         /// <param name="year">release year</param>
         /// <returns>response</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response35> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, Sort? sort = null, double? status = null, double? year = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<Response35> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, MovieSort? sort = null, double? status = null, double? year = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (country == null)
                 throw new System.ArgumentNullException("country");
@@ -8717,7 +8717,7 @@ namespace Tvdb.Clients
         /// <param name="year">release year</param>
         /// <returns>response</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<Response58> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, Sort2? sort = null, SortType? sortType = null, double? status = null, double? year = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public virtual async System.Threading.Tasks.Task<Response58> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, SeriesSort? sort = null, SortType? sortType = null, double? status = null, double? year = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             if (country == null)
                 throw new System.ArgumentNullException("country");

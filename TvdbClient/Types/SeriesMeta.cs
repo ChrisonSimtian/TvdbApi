@@ -1,12 +1,21 @@
-﻿namespace Tvdb.Types;
+﻿using System.Runtime.Serialization;
 
+namespace Tvdb.Types;
+
+/// <summary>
+/// MetaData for <see cref="Models.SeriesBaseRecord"/> to include
+/// </summary>
 public enum SeriesMeta
 {
-
-    [System.Runtime.Serialization.EnumMember(Value = @"translations")]
+    /// <summary>
+    /// Include <see cref="Models.SeriesExtendedRecord.Translations"/>
+    /// </summary>
+    [EnumMember(Value = @"translations")]
     Translations = 0,
 
-    [System.Runtime.Serialization.EnumMember(Value = @"episodes")]
+    /// <summary>
+    /// Include Episodes on <see cref="Models.SeriesExtendedRecord.Seasons"/>
+    /// </summary>
+    [EnumMember(Value = @"episodes")]
     Episodes = 1,
-
 }

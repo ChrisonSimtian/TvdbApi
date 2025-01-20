@@ -413,7 +413,7 @@ public partial interface IMoviesClient : ITvdbClient
     /// <param name="year">release year</param>
     /// <returns>response</returns>
     /// <exception cref="ApiException">A server side error occurred.</exception>
-    Task<Response35> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, Sort? sort = null, double? status = null, double? year = null, CancellationToken cancellationToken = default);
+    Task<Response35> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, MovieSort? sort = null, double? status = null, double? year = null, CancellationToken cancellationToken = default);
 
     /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
     /// <remarks>
@@ -684,7 +684,7 @@ public partial interface ISeriesClient : ITvdbClient
     /// <param name="year">release year</param>
     /// <returns>response</returns>
     /// <exception cref="ApiException">A server side error occurred.</exception>
-    Task<Response58> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, Sort2? sort = null, SortType? sortType = null, double? status = null, double? year = null, CancellationToken cancellationToken = default);
+    Task<Response58> FilterAsync(string country, string lang, double? company = null, double? contentRating = null, double? genre = null, SeriesSort? sort = null, SortType? sortType = null, double? status = null, double? year = null, CancellationToken cancellationToken = default);
 
     /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
     /// <remarks>
