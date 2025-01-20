@@ -45,6 +45,7 @@ public class SeriesClient
         // Act
         var result = await Client.SeriesGetAsync(tvdbId);
         var data = result.Data;
+
         // Assert
         result.Should().NotBeNull();
         result.IsSuccess.Should().BeTrue();
@@ -61,6 +62,7 @@ public class SeriesClient
         // Act
         var result = await Client.ExtendedAsync(tvdbId);
         var data = result.Data;
+
         // Assert
         result.Should().NotBeNull();
         result.IsSuccess.Should().BeTrue();

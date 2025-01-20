@@ -28,7 +28,7 @@ public class AuthenticationUnitTests
     public ServiceProvider ServiceProvider { get; internal set; }
 
     [Fact]
-    public async void ManuallyAuthenticate_Fact()
+    public async Task ManuallyAuthenticate_Fact()
     {
         // Arrange
         var config = new Configuration.TvdbConfiguration
@@ -64,10 +64,15 @@ public class AuthenticationUnitTests
     }
 
     [Fact]
-    public async void TestRandomApi_Fact()
+    public async Task TestRandomApi_Fact()
     {
+        // Arrange
         var client = ServiceProvider.GetRequiredService<ICountriesClient>();
+
+        // Act
         var result = await client.CountriesAsync();
+
+        // Assert
         result.Status.Should().Be("success");
     }
 }

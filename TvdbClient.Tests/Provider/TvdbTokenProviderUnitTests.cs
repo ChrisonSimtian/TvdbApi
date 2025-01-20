@@ -35,7 +35,7 @@ public class TvdbTokenProviderUnitTests
     public ServiceProvider ServiceProvider { get; internal set; }
 
     [Fact]
-    public async void AcquireTokenAsync_Fact()
+    public async Task AcquireTokenAsync_Fact()
     {
         // Arrange
         var tokenProvider = ServiceProvider.GetRequiredService<TvdbTokenProvider>();
