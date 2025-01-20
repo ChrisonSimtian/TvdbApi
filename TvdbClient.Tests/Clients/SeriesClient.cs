@@ -34,7 +34,7 @@ public class SeriesClient
     public ISeriesClient Client { get; }
 
     [Fact]
-    public async Task DependencyInjection_Fact() => Client.Should().NotBeNull();
+    public void DependencyInjection_Fact() => Client.Should().NotBeNull();
 
     [Theory]
     [InlineData(234791)] // Heute Show
