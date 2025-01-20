@@ -19,5 +19,6 @@ public class LoginRequestBody : AbstractBaseRecord
     /// Subscription Pin (optional)
     /// </summary>
     [JsonPropertyName("pin")]
-    public string Pin { get; set; }
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string? Pin { get; set; }
 }

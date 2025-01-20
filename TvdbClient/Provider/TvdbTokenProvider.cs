@@ -39,7 +39,7 @@ public class TvdbTokenProvider(IOptions<TvdbConfiguration> options, ILogger<Tvdb
             try
             {
                 var httpClient = new HttpClient();
-                var requestBody = new StringContent(JsonSerializer.Serialize(new { apikey = Config.ApiKey, pin = Config.Pin }), Encoding.UTF8, System.Net.Mime.MediaTypeNames.Application.Json);
+                var requestBody = new StringContent(JsonSerializer.Serialize(new LoginRequestBody { Apikey = Config.ApiKey, Pin = Config.Pin }), Encoding.UTF8, System.Net.Mime.MediaTypeNames.Application.Json);
 
                 var response = await httpClient.PostAsync(Config.TokenUrl, requestBody, cancellationToken);
                 if (!response.IsSuccessStatusCode) Logger.LogError("Failed acquiring Token");
