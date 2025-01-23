@@ -1,0 +1,42 @@
+name: Code Coverage
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '9.0.x'
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Run tests with coverage
+      run: dotnet test --no-build --collect:"XPlat Code Coverage"
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: '**/coverage.cobertura.xml'
+        
+    - name: Generate coverage badge
+      uses: simon-k/dotnet-code-coverage-badge@v1
+      with:
+        path: '**/coverage.cobertura.xml'
+        gist-id: ${{ secrets.GIST_ID }}
+        gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
+
+    - name: Update README with badge
+      run: |
+        echo "!Coverage" >> README.md
