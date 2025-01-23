@@ -1,4 +1,4 @@
-name: Publish Chrison .NET Extensions on NuGet
+name: Publish on NuGet
  
 on:
   push:

@@ -1,6 +1,9 @@
 name: Code Coverage
 
-on: [push, pull_request]
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  NET_VERSION: '9.x'
 
 jobs:
   build:
@@ -10,10 +13,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+    - name: Setup .NET SDK ${{ env.NET_VERSION }}
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '9.0.x'
+        dotnet-version: ${{ env.NET_VERSION }}
+        dotnet-quality: 'ga'
 
     - name: Install dependencies
       run: dotnet restore
