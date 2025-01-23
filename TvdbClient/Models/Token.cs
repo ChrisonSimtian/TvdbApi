@@ -23,7 +23,7 @@ public class Token
     /// </summary>
     /// <remarks>TVDB says their tokens last a month</remarks>
     [System.Text.Json.Serialization.JsonIgnore]
-    public DateTime TokenExpiryDate => CreationTimestamp.AddDays(30);
+    public DateTime TokenExpiryDate => CreationTimestamp.AddMonths(1);
 
     /// <summary>
     /// Has this Token expired?

@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<Using Include="Xunit" />
-		<Using Include="FluentAssertions" />
+		<Using Include="Shouldly" />
 	</ItemGroup>
 
 	<ItemGroup>

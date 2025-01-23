@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Shouldly;
 using Tvdb.Configuration;
 using Xunit.Abstractions;
 
@@ -53,6 +52,6 @@ public class TvdbTokenProviderUnitTests
         token.IsTokenExpired.ShouldBeFalse();
         token.TokenExpiryDate.ShouldBeGreaterThanOrEqualTo(DateTime.Today.AddMonths(1)); // should be roughly a month, +/- a day
 
-        token.AccessToken.ShouldBeNullOrEmpty();
+        token.AccessToken.ShouldNotBeNullOrEmpty();
     }
 }
