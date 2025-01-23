@@ -20,11 +20,11 @@ jobs:
         dotnet-version: ${{ env.NET_VERSION }}
         dotnet-quality: 'ga'
 
-    - name: Install dependencies
-      run: dotnet restore
+    # - name: Install dependencies
+    #   run: dotnet restore
 
-    - name: Build
-      run: dotnet build -c ${{ env.RELEASE_CONFIG }} --no-restore
+    # - name: Build
+    #   run: dotnet build -c ${{ env.RELEASE_CONFIG }} --no-restore
 
     - name: Run tests with coverage
       run: dotnet test --no-build --collect:"XPlat Code Coverage"
