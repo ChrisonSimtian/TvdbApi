@@ -36,7 +36,7 @@ jobs:
         path: '**/coverage.cobertura.xml'
         
     - name: Generate coverage badge
-      uses: simon-k/dotnet-code-coverage-badge@v1
+      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
       with:
         path: '**/coverage.cobertura.xml'
         gist-id: ${{ secrets.GIST_ID }}
