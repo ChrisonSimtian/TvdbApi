@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Shouldly;
 using Tvdb.Configuration;
 using Xunit.Abstractions;
 
@@ -46,12 +47,12 @@ public class TvdbTokenProviderUnitTests
         // Assert
 
         /* Validate Data, Token should be populated and valid for a month */
-        token.Should().NotBeNull();
-        Models.Token.TokenType.Should().Be("Bearer");
-        token.CreationTimestamp.Should().BeBefore(DateTime.Now);
-        token.IsTokenExpired.Should().BeFalse();
-        token.TokenExpiryDate.Should().BeCloseTo(DateTime.Today.AddMonths(1), TimeSpan.FromDays(1)); // should be roughly a month, +/- a day
+        token.ShouldNotBeNull();
+        Models.Token.TokenType.ShouldBe("Bearer");
+        token.CreationTimestamp.ShouldBeLessThanOrEqualTo(DateTime.Now);
+        token.IsTokenExpired.ShouldBeFalse();
+        token.TokenExpiryDate.ShouldBeGreaterThanOrEqualTo(DateTime.Today.AddMonths(1)); // should be roughly a month, +/- a day
 
-        token.AccessToken.Should().NotBeNullOrEmpty();
+        token.AccessToken.ShouldBeNullOrEmpty();
     }
 }

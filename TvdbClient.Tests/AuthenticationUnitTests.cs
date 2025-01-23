@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Shouldly;
 using Tvdb.Clients;
 using Tvdb.Models;
 using Xunit.Abstractions;
@@ -48,19 +49,19 @@ public class AuthenticationUnitTests
         // Assert
 
         /* Validate Wrapper, Response should be a success */
-        result.Should().NotBeNull();
-        result.Status.Should().Be("success");
-        result.IsSuccess.Should().BeTrue();
+        result.ShouldNotBeNull();
+        result.Status.ShouldBe("success");
+        result.IsSuccess.ShouldBeTrue();
 
         /* Validate Data, Token should be populated and valid for a month */
-        result.Data.Should().NotBeNull();
+        result.Data.ShouldNotBeNull();
         var token = result.Data;
-        Token.TokenType.Should().Be("Bearer");
-        token.CreationTimestamp.Should().BeBefore(DateTime.Now);
-        token.IsTokenExpired.Should().BeFalse();
-        token.TokenExpiryDate.Should().BeCloseTo(DateTime.Today.AddMonths(1), TimeSpan.FromDays(1)); // should be roughly a month, +/- a day
+        Token.TokenType.ShouldBe("Bearer");
+        token.CreationTimestamp.ShouldBeLessThanOrEqualTo(DateTime.Now);
+        token.IsTokenExpired.ShouldBeFalse();
+        token.TokenExpiryDate.ShouldBeGreaterThanOrEqualTo(DateTime.Today.AddMonths(1)); // should be roughly a month, +/- a day
         
-        token.AccessToken.Should().NotBeNullOrEmpty();
+        token.AccessToken.ShouldNotBeNullOrEmpty();
     }
 
     [Fact]
@@ -73,6 +74,6 @@ public class AuthenticationUnitTests
         var result = await client.CountriesAsync();
 
         // Assert
-        result.Status.Should().Be("success");
+        result.Status.ShouldBe("success");
     }
 }

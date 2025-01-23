@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Shouldly;
 using Xunit.Abstractions;
 
 namespace Tvdb.Clients;
@@ -34,7 +35,7 @@ public class SeriesClient
     public ISeriesClient Client { get; }
 
     [Fact]
-    public void DependencyInjection_Fact() => Client.Should().NotBeNull();
+    public void DependencyInjection_Fact() => Client.ShouldNotBeNull();
 
     [Theory]
     [InlineData(234791)] // Heute Show
@@ -47,10 +48,10 @@ public class SeriesClient
         var data = result.Data;
 
         // Assert
-        result.Should().NotBeNull();
-        result.IsSuccess.Should().BeTrue();
+        result.ShouldNotBeNull();
+        result.IsSuccess.ShouldBeTrue();
 
-        data.Should().NotBeNull();
+        data.ShouldNotBeNull();
     }
 
     [Theory]
@@ -64,9 +65,9 @@ public class SeriesClient
         var data = result.Data;
 
         // Assert
-        result.Should().NotBeNull();
-        result.IsSuccess.Should().BeTrue();
+        result.ShouldNotBeNull();
+        result.IsSuccess.ShouldBeTrue();
 
-        data.Should().NotBeNull();
+        data.ShouldNotBeNull();
     }
 }

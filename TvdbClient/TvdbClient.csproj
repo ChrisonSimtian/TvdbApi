@@ -38,12 +38,6 @@
 		<NoWarn>CS1591;CS8618</NoWarn> <!-- Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable. -->
 	</PropertyGroup>
 
-	<!-- This defines a default versioning -->
-	<PropertyGroup Label="Versioning">
-		<Version>4.7.10-alpha.5</Version>
-		<GenerateDocumentationFile>True</GenerateDocumentationFile>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<None Include="..\LICENSE">
 			<Pack>True</Pack>
