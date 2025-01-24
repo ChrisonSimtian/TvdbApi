@@ -11,6 +11,7 @@ env:
   PROJECT_NAME: TvdbClient
   PROJECT_FILE: TvdbClient.csproj
   RELEASE_NAME: TvdbClient
+  RELEASE_CONFIG: Release
   
 jobs:
   publish:
@@ -34,9 +35,15 @@ jobs:
       id: nbgv
       with:        
         path: ${{ env.PROJECT_NAME }}
-        
+
+    - name: Install dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build -c ${{ env.RELEASE_CONFIG }} --no-restore
+
     - name: Package
-      run: dotnet pack -c Release -o . '${{ env.PROJECT_NAME }}/${{ env.PROJECT_FILE }}'
+      run: dotnet pack -c ${{ env.RELEASE_CONFIG }} -o . '${{ env.PROJECT_NAME }}/${{ env.PROJECT_FILE }}'
       
     - name: Publish on NuGet
       run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json  
