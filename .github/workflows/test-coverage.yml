@@ -5,6 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 env:
   NET_VERSION: '9.x'
   RELEASE_CONFIG: Release
+  PROJECT_NAME: TvdbClient
 
 jobs:
   build:
@@ -20,27 +21,28 @@ jobs:
         dotnet-version: ${{ env.NET_VERSION }}
         dotnet-quality: 'ga'
 
-    # - name: Install dependencies
-    #   run: dotnet restore
+    - name: Install dependencies
+      run: dotnet restore
 
-    # - name: Build
-    #   run: dotnet build -c ${{ env.RELEASE_CONFIG }} --no-restore
+    - name: Build
+      run: dotnet build --no-restore
 
     - name: Run tests with coverage
-      run: dotnet test --no-build --collect:"XPlat Code Coverage"
+      run: dotnet test --no-build --collect:"XPlat Code Coverage" #-p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+      # run: dotnet test -p:CollectCoverage=true -p:CoverletOutput=TestResults/ -p:CoverletOutputFormat=opencover --no-build #--verbosity normal ${{ env.PROJECT_NAME }}.Tests/
 
     - name: Upload coverage report
       uses: actions/upload-artifact@v4
       with:
         name: coverage-report
-        path: '**/coverage.cobertura.xml'
+        path: '**/TestResults/**/coverage.cobertura.xml'
         
     - name: Generate coverage badge
       uses: simon-k/dotnet-code-coverage-badge@v1.0.0
       with:
-        path: '**/coverage.cobertura.xml'
-        gist-id: ${{ secrets.GIST_ID }}
-        gist-auth-token: ${{ secrets.GIST_AUTH_TOKEN }}
+        path: '**/TestResults/**/coverage.cobertura.xml'
+        gist-id: 9c93aa7ad61bf69980a258fe1f723d7e #${{ secrets.GIST_ID }}
+        gist-auth-token: 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 #${{ secrets.GIST_AUTH_TOKEN }}
 
     - name: Update README with badge
       run: |
