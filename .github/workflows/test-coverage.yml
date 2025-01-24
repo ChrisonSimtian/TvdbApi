@@ -37,13 +37,13 @@ jobs:
         name: coverage-report
         path: '**/TestResults/**/coverage.cobertura.xml'
         
-    - name: Generate coverage badge
-      uses: simon-k/dotnet-code-coverage-badge@v1.0.0
-      with:
-        path: '**/TestResults/**/coverage.cobertura.xml'
-        gist-id: 9c93aa7ad61bf69980a258fe1f723d7e #${{ secrets.GIST_ID }}
-        gist-auth-token: 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 #${{ secrets.GIST_AUTH_TOKEN }}
+    # - name: Generate coverage badge
+    #   uses: simon-k/dotnet-code-coverage-badge@v1.0.0
+    #   with:
+    #     path: '**/TestResults/**/coverage.cobertura.xml'
+    #     gist-id: 9c93aa7ad61bf69980a258fe1f723d7e #${{ secrets.GIST_ID }}
+    #     gist-auth-token: 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 #${{ secrets.GIST_AUTH_TOKEN }}
 
-    - name: Update README with badge
-      run: |
-        echo "!Coverage" >> README.md
+    # - name: Update README with badge
+    #   run: |
+    #     echo "!Coverage" >> README.md
