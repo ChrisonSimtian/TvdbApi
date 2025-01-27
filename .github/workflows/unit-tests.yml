@@ -1,0 +1,58 @@
+name: Code Coverage
+
+on: [push, pull_request, workflow_dispatch]
+
+env:
+  NET_VERSION: '9.x'
+  RELEASE_CONFIG: Release
+  PROJECT_NAME: TvdbClient
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET SDK ${{ env.NET_VERSION }}
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ env.NET_VERSION }}
+        dotnet-quality: 'ga'
+
+    - name: Install dependencies
+      run: dotnet restore 
+
+    - name: Build
+      run: dotnet build --no-restore
+
+    - name: Run tests with coverage
+      run: dotnet test ${{env.PROJECT_NAME}}/${{env.PROJECT_NAME}}.csproj --no-build --collect:"XPlat Code Coverage" #-p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+      continue-on-error: true
+
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: '**/${{env.PROJECT_NAME}}/TestResults/**/coverage.cobertura.xml'
+
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: '**/${{env.PROJECT_NAME}}/TestResults/**/coverage.cobertura.xml'
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
+  
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
