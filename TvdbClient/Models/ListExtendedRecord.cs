@@ -5,8 +5,9 @@ namespace Tvdb.Models;
 /// <summary>
 /// extended list record
 /// </summary>
+[System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
 public partial class ListExtendedRecord : ListBaseRecord
 {
-    [System.Text.Json.Serialization.JsonPropertyName("entities")]
-    public System.Collections.Generic.ICollection<Entity> Entities { get; set; }
+    [JsonPropertyName("entities")]
+    public ICollection<Entity> Entities { get; set; }
 }
