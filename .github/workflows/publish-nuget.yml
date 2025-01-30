@@ -18,6 +18,9 @@ jobs:
     name: Publish on NuGet
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write  # Add permissions to create a github release
+
     steps:
     - name: Checkout
       uses: actions/checkout@v3
