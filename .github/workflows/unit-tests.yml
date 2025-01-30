@@ -5,7 +5,7 @@ on: [push, pull_request, workflow_dispatch]
 env:
   NET_VERSION: '9.x'
   RELEASE_CONFIG: Release
-  PROJECT_NAME: TvdbClient
+  PROJECT_NAME: TvdbClient.Tests
 
 jobs:
   build:
