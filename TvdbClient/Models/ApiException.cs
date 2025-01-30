@@ -3,7 +3,7 @@
 /// <summary>
 /// Api Exception for TVDB
 /// </summary>
-[System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
+[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public class ApiException(string message, int statusCode, string response, IReadOnlyDictionary<string, IEnumerable<string>> headers, Exception innerException) 
     : Exception(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + ((response == null) ? "(null)" : response.Substring(0, response.Length >= 512 ? 512 : response.Length)), innerException)
 {
@@ -37,7 +37,7 @@ public class ApiException(string message, int statusCode, string response, IRead
 /// Api Exception for TVDB with a <typeparamref name="TResult"/>
 /// </summary>
 /// <typeparam name="TResult"></typeparam>
-[System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
+[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public class ApiException<TResult>(string message, int statusCode, string response, IReadOnlyDictionary<string, IEnumerable<string>> headers, TResult result, Exception innerException) : ApiException(message, statusCode, response, headers, innerException)
 {
     #region Properties

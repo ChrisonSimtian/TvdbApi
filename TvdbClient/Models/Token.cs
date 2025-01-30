@@ -5,6 +5,7 @@ namespace Tvdb.Models;
 /// <summary>
 /// Bearer Token Model
 /// </summary>
+[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public class Token
 {
     /// <summary>

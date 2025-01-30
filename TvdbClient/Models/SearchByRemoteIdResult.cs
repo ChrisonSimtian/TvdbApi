@@ -3,7 +3,7 @@
 /// <summary>
 /// search by remote reuslt is a base record for a movie, series, people, season or company search result
 /// </summary>
-[System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
+[System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
 public partial class SearchByRemoteIdResult : AbstractBaseRecord
 {
 

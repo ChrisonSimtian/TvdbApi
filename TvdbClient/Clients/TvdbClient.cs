@@ -7,6 +7,7 @@
 using Tvdb.Models;
 using System;
 using Tvdb.Types;
+using System.Diagnostics.CodeAnalysis;
 
 #pragma warning disable 108 // Disable "CS0108 '{derivedDto}.ToJson()' hides inherited member '{dtoBase}.ToJson()'. Use the new keyword if hiding was intended."
 #pragma warning disable 114 // Disable "CS0114 '{derivedDto}.RaisePropertyChanged(String)' hides inherited member 'dtoBase.RaisePropertyChanged(String)'. To make the current member override that implementation, add the override keyword. Otherwise add the new keyword."
@@ -26,6 +27,7 @@ namespace Tvdb.Clients
 {
     using System = global::System;
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class LoginClient : ILoginClient
     {
@@ -254,6 +256,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class ArtworkClient : IArtworkClient
     {
@@ -590,6 +593,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Artwork_StatusesClient : IArtwork_StatusesClient
     {
@@ -811,6 +815,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Artwork_TypesClient : IArtwork_TypesClient
     {
@@ -1032,6 +1037,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class AwardsClient : IAwardsClient
     {
@@ -1448,6 +1454,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Award_CategoriesClient : IAward_CategoriesClient
     {
@@ -1784,6 +1791,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class CharactersClient : ICharactersClient
     {
@@ -2022,6 +2030,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class CompaniesClient : ICompaniesClient
     {
@@ -2427,6 +2436,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Content_RatingsClient : IContent_RatingsClient
     {
@@ -2648,6 +2658,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class CountriesClient : ICountriesClient
     {
@@ -2863,6 +2874,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Entity_TypesClient : IEntity_TypesClient
     {
@@ -3084,6 +3096,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class EpisodesClient : IEpisodesClient
     {
@@ -3617,6 +3630,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class GendersClient : IGendersClient
     {
@@ -3832,6 +3846,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class GenresClient : IGenresClient
     {
@@ -4150,6 +4165,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class InspirationTypesClient : IInspirationTypesClient
     {
@@ -4371,6 +4387,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class LanguagesClient : ILanguagesClient
     {
@@ -4592,6 +4609,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class ListsClient : IListsClient
     {
@@ -5215,6 +5233,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class MoviesClient : IMoviesClient
     {
@@ -5978,6 +5997,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Movie_StatusesClient : IMovie_StatusesClient
     {
@@ -6199,6 +6219,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class PeopleClient : IPeopleClient
     {
@@ -6732,6 +6753,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class People_TypesClient : IPeople_TypesClient
     {
@@ -6947,6 +6969,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class SearchClient : ISearchClient
     {
@@ -7326,6 +7349,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class SeasonsClient : ISeasonsClient
     {
@@ -7932,6 +7956,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class SeriesClient : ISeriesClient
     {
@@ -9144,6 +9169,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Series_StatusesClient : ISeries_StatusesClient
     {
@@ -9365,6 +9391,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Source_TypesClient : ISource_TypesClient
     {
@@ -9586,6 +9613,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class UpdatesClient : IUpdatesClient
     {
@@ -9832,6 +9860,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class User_infoClient : IUser_infoClient
     {
@@ -10138,6 +10167,7 @@ namespace Tvdb.Clients
         }
     }
 
+    [ExcludeFromCodeCoverage]
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class FavoritesClient : IFavoritesClient
     {
