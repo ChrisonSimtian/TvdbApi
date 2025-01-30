@@ -30,7 +30,7 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run tests with coverage
-      run: dotnet test ${{env.PROJECT_NAME}}/${{env.PROJECT_NAME}}.csproj --no-build --collect:"XPlat Code Coverage" #-p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+      run: dotnet test ${{env.PROJECT_NAME}}/${{env.PROJECT_NAME}}.csproj --no-build --exclude-by-attribute "Obsolete" "GeneratedCode" "CompilerGenerated" --collect:"XPlat Code Coverage" #-p:CollectCoverage=true -p:CoverletOutputFormat=opencover
       continue-on-error: true
 
     - name: Upload coverage report

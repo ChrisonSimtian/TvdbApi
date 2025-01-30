@@ -10,6 +10,7 @@ namespace Tvdb.Models;
 /// Wrapper for TVDB API Responses
 /// </summary>
 /// <typeparam name="TDataType"></typeparam>
+[System.CodeDom.Compiler.GeneratedCode("NSwag", "14.2.0.0 (NJsonSchema v11.1.0.0 (Newtonsoft.Json v13.0.0.0))")]
 public class ApiResponseWrapper<TDataType> 
     where TDataType : class
 {
