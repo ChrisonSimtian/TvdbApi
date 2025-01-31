@@ -48,14 +48,14 @@ jobs:
     - name: Package
       run: dotnet pack -c ${{ env.RELEASE_CONFIG }} -o . '${{ env.PROJECT_NAME }}/${{ env.PROJECT_FILE }}' /p:PublicRelease=true
       
-    # - name: Publish on NuGet
-    #   run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json  
+    - name: Publish on NuGet
+      run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json  
       
-    # - name: Create release
-    #   uses: softprops/action-gh-release@v2
-    #   with:
-    #       name: ${{ env.RELEASE_NAME }} ${{ steps.nbgv.outputs.NuGetPackageVersion }}
-    #       tag_name: v${{ steps.nbgv.outputs.NuGetPackageVersion }}
-    #       make_latest: true
-    #       draft: false
-    #       prerelease: false
+    - name: Create release
+      uses: softprops/action-gh-release@v2
+      with:
+          name: ${{ env.RELEASE_NAME }} ${{ steps.nbgv.outputs.NuGetPackageVersion }}
+          tag_name: v${{ steps.nbgv.outputs.NuGetPackageVersion }}
+          make_latest: true
+          draft: false
+          prerelease: false
