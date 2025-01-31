@@ -31,7 +31,7 @@
 		<PackageLicenseFile>LICENSE</PackageLicenseFile>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<IncludeSymbols>False</IncludeSymbols>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile>../README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Label="Disabled Warnings">
