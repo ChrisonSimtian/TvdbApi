@@ -2,7 +2,7 @@ name: Publish on NuGet
  
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths: [ 'TvdbClient/**', '.github/workflows/publish-nuget.yml' ]
   workflow_dispatch:
 
