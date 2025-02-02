@@ -1,9 +1,8 @@
-name: Publish Non-Public Release on NuGet
+name: Publish Public Release on NuGet
  
 on:
   push:
-    branches: [ main ]
-    paths: [ 'TvdbClient/**', '.github/workflows/publish-nuget.yml' ]
+    paths: [ 'TvdbClient/**' ]
   workflow_dispatch:
 
 env:
@@ -12,6 +11,7 @@ env:
   PROJECT_FILE: TvdbClient.csproj
   RELEASE_NAME: TvdbClient
   RELEASE_CONFIG: Release
+  IS_PUBLIC_RELEASE: ${{ github.ref == 'refs/heads/main' }} # needs to be adjusted once we set up proper branching strategy
   
 jobs:
   publish:
@@ -43,10 +43,10 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build -c ${{ env.RELEASE_CONFIG }} --no-restore
+      run: dotnet build -c ${{ env.RELEASE_CONFIG }} --no-restore /p:PublicRelease=${{ env.IS_PUBLIC_RELEASE }}
 
     - name: Package
-      run: dotnet pack -c ${{ env.RELEASE_CONFIG }} -o . '${{ env.PROJECT_NAME }}/${{ env.PROJECT_FILE }}'
+      run: dotnet pack -c ${{ env.RELEASE_CONFIG }} -o . '${{ env.PROJECT_NAME }}/${{ env.PROJECT_FILE }}' /p:PublicRelease=${{ env.IS_PUBLIC_RELEASE }}
       
     - name: Publish on NuGet
       run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json  
@@ -56,6 +56,6 @@ jobs:
       with:
           name: ${{ env.RELEASE_NAME }} ${{ steps.nbgv.outputs.NuGetPackageVersion }}
           tag_name: v${{ steps.nbgv.outputs.NuGetPackageVersion }}
-          make_latest: true
+          make_latest: ${{ env.IS_PUBLIC_RELEASE }} # If public release, then make latest
           draft: false
-          prerelease: false
+          prerelease: ${{ !env.IS_PUBLIC_RELEASE }} # If not public release, then prerelease
