@@ -3,6 +3,8 @@ name: Publish Public Release on NuGet
 on:
   push:
     paths: [ 'TvdbClient/**' ]
+  pull_request:
+    paths: [ 'TvdbClient/**' ]
   workflow_dispatch:
 
 env:

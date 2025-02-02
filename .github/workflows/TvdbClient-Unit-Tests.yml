@@ -1,6 +1,11 @@
 name: Code Coverage
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    paths: [ 'TvdbClient/**','TvdbClient.Tests/**' ]
+  pull_request:
+    paths: [ 'TvdbClient/**','TvdbClient.Tests/**' ]
+  workflow_dispatch:
 
 env:
   NET_VERSION: '9.x'
