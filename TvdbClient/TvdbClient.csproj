@@ -23,7 +23,7 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Title>TVDB Api Client</Title>
 		<Authors>Chrison Simtian</Authors>
-		<Copyright>$([System.DateTime]::Now.ToString(yyyy)) - $(Company)</Copyright>
+		<Copyright>$([System.DateTime]::Now.ToString(yyyy)) - $(Authors)</Copyright>
 		<Description>C# Api Client (HttpClient) for TVDB Api</Description>
 		<PackageProjectUrl>https://github.com/ChrisonSimtian/TvdbApi</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/ChrisonSimtian/TvdbApi.git</RepositoryUrl>
@@ -39,14 +39,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\LICENSE">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-		<None Include="..\README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
+		<None Include="../LICENSE" Pack="true" PackagePath="" />
+		<None Include="../README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>
