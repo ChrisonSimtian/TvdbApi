@@ -1,4 +1,6 @@
-﻿namespace Tvdb.Handlers;
+﻿using Tvdb.Provider;
+
+namespace Tvdb.Handlers;
 
 /// <summary>
 /// Handler to add Authorization Header to the request

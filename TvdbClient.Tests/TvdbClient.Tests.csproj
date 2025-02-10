@@ -47,8 +47,4 @@
 		<ProjectReference Include="..\TvdbClient\TvdbClient.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Using Include="Xunit" />
-	</ItemGroup>
-
 </Project>
