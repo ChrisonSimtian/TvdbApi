@@ -2,9 +2,9 @@ name: Code Coverage
 
 on:
   push:
-    paths: [ 'TvdbClient/**','TvdbClient.Tests/**' ]
+    paths: [ 'src/**','tests/**' ]
   pull_request:
-    paths: [ 'TvdbClient/**','TvdbClient.Tests/**' ]
+    paths: [ 'src/**','tests/**' ]
   workflow_dispatch:
 
 env:

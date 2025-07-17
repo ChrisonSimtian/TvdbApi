@@ -44,7 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\TvdbClient\TvdbClient.csproj" />
+		<ProjectReference Include="..\..\src\TvdbClient\TvdbClient.csproj" />
 	</ItemGroup>
 
 </Project>
