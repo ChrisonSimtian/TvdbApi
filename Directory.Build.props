@@ -12,7 +12,7 @@
       <Version>3.7.115</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup Label="Variables">
+  <PropertyGroup Label="Variables">
     <CurrentYear>$([System.DateTime]::Now.ToString("yyyy"))</CurrentYear>
-  </ItemGroup>
+  </PropertyGroup>
 </Project>
