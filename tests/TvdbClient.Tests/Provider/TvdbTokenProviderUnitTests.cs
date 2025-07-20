@@ -6,18 +6,15 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Tvdb.Configuration;
-using Xunit.Abstractions;
 
 namespace Tvdb.Provider;
 
 public class TvdbTokenProviderUnitTests
 {
 
-    public TvdbTokenProviderUnitTests(ITestOutputHelper outputHelper)
+    public TvdbTokenProviderUnitTests()
     {
-        OutputHelper = outputHelper;
 
         var builder = new HostApplicationBuilder();
         var config = builder.Configuration
@@ -25,16 +22,14 @@ public class TvdbTokenProviderUnitTests
             .Build();
 
         ServiceProvider = builder.Services
-            .AddLogging((builder) => builder.AddXUnit(OutputHelper))
             .Configure<TvdbConfiguration>(config.GetRequiredSection("TvdbConfiguration"))
             .AddScoped<TvdbTokenProvider>()
             .BuildServiceProvider();
     }
 
-    public ITestOutputHelper OutputHelper { get; }
     public ServiceProvider ServiceProvider { get; internal set; }
 
-    [Fact]
+    [Test]
     public async Task AcquireTokenAsync_Fact()
     {
         // Arrange
