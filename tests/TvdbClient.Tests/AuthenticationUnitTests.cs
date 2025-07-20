@@ -1,33 +1,27 @@
 ﻿using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Tvdb.Clients;
 using Tvdb.Models;
-using Xunit.Abstractions;
 
 namespace Tvdb;
 
 public class AuthenticationUnitTests
 {
-    public AuthenticationUnitTests(ITestOutputHelper outputHelper)
+    public AuthenticationUnitTests()
     {
-        OutputHelper = outputHelper;
-
         var builder = new HostApplicationBuilder();
         var config = builder.Configuration
             .AddTvdbClient()
             .Build();
         ServiceProvider = builder.Services
-            .AddLogging((builder) => builder.AddXUnit(OutputHelper))
             .AddTvdbClient(config)
             .BuildServiceProvider();
     }
 
-    public ITestOutputHelper OutputHelper { get; }
     public ServiceProvider ServiceProvider { get; internal set; }
 
-    [Fact]
+    [Test]
     public async Task ManuallyAuthenticate_Fact()
     {
         // Arrange
@@ -63,7 +57,7 @@ public class AuthenticationUnitTests
         token.AccessToken.ShouldNotBeNullOrEmpty();
     }
 
-    [Fact]
+    [Test]
     public async Task TestRandomApi_Fact()
     {
         // Arrange

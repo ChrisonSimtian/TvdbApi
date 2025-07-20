@@ -2,9 +2,9 @@ name: Code Coverage
 
 on:
   push:
-    paths: [ 'TvdbClient/**','TvdbClient.Tests/**' ]
+    paths: [ 'src/**','tests/**' ]
   pull_request:
-    paths: [ 'TvdbClient/**','TvdbClient.Tests/**' ]
+    paths: [ 'src/**','tests/**' ]
   workflow_dispatch:
 
 env:
@@ -35,7 +35,7 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Run tests with coverage
-      run: dotnet test ${{env.PROJECT_NAME}}/${{env.PROJECT_NAME}}.csproj --no-build --collect:"XPlat Code Coverage" #-p:CollectCoverage=true -p:CoverletOutputFormat=opencover
+      run: dotnet test --configuration Release -- --report-trx --results-directory '**/${{env.PROJECT_NAME}}/TestResults' --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage" --settings "coverlet.runsettings" --no-build
       continue-on-error: true
 
     - name: Upload coverage report

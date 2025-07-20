@@ -5,16 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Xunit.Abstractions;
 
 namespace Tvdb.Clients;
 
 public class SeriesClient
 {
-    public SeriesClient(ITestOutputHelper outputHelper)
+    public SeriesClient()
     {
-        OutputHelper = outputHelper;
 
         var builder = new HostApplicationBuilder();
         var config = builder.Configuration
@@ -22,22 +19,20 @@ public class SeriesClient
             .Build();
 
         ServiceProvider = builder.Services
-            .AddLogging((builder) => builder.AddXUnit(OutputHelper))
             .AddTvdbClient(config)
             .BuildServiceProvider();
 
         Client = ServiceProvider.GetRequiredService<ISeriesClient>();
     }
 
-    public ITestOutputHelper OutputHelper { get; }
     public ServiceProvider ServiceProvider { get; }
     public ISeriesClient Client { get; }
 
-    [Fact]
+    [Test]
     public void DependencyInjection_Fact() => Client.ShouldNotBeNull();
 
-    [Theory]
-    [InlineData(234791)] // Heute Show
+    [Test]
+    [Arguments(234791)] // Heute Show
     public async Task GetSeriesById_Theory(int tvdbId)
     {
         // Arrange
@@ -53,8 +48,8 @@ public class SeriesClient
         data.ShouldNotBeNull();
     }
 
-    [Theory]
-    [InlineData(234791)] // Heute Show
+    [Test]
+    [Arguments(234791)] // Heute Show
     public async Task GetSeriesExtendedById_Theory(int tvdbId)
     {
         // Arrange
