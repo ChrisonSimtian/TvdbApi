@@ -2,9 +2,9 @@ name: Code Coverage
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ "**" ]  # Trigger on all branches
   pull_request:
-    branches: [ main ]
+    branches: [ "**" ]  # Trigger on PRs to any branch
 
 jobs:
   test:
