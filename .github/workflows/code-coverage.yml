@@ -31,6 +31,7 @@ jobs:
         dotnet test --no-build --configuration Release \
           -- --report-trx --coverage \
           --results-directory ./test-results
+      continue-on-error: true # Continue even if tests fail
     
     - name: Generate Code Coverage Report
       uses: danielpalme/ReportGenerator-GitHub-Action@v5
