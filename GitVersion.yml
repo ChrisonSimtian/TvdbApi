@@ -1,0 +1,30 @@
+mode: ContinuousDelivery
+
+branches:
+  main:
+    mode: ContinuousDelivery
+    increment: None
+  develop:
+    mode: ContinuousDeployment
+    label: 'alpha'
+    increment: None
+  release:
+    mode: ContinuousDelivery
+    label: 'beta'
+    increment: None
+  feature:
+    mode: ContinuousDeployment
+    label: 'feature'
+    increment: None
+  hotfix:
+    mode: ContinuousDeployment
+    label: 'hotfix'
+    increment: None
+
+assembly-versioning-scheme: MajorMinorPatch
+assembly-file-versioning-scheme: MajorMinorPatchTag
+
+tag-prefix: 'v'
+
+# Keep major.minor.patch static by not incrementing any version component
+# The build metadata and prerelease tags will provide uniqueness
