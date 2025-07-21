@@ -29,7 +29,7 @@ jobs:
     - name: Run TUNIT tests with coverage
       run: |
         dotnet test --no-build --configuration Release \
-          --collect:"XPlat Code Coverage" \
+          -- --report-trx --coverage \
           --results-directory ./test-results \
           --logger "trx;LogFileName=TestResults.trx" \
           --logger "console;verbosity=detailed"
