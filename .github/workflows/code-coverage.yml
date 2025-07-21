@@ -30,9 +30,7 @@ jobs:
       run: |
         dotnet test --no-build --configuration Release \
           -- --report-trx --coverage \
-          --results-directory ./test-results \
-          --logger "trx;LogFileName=TestResults.trx" \
-          --logger "console;verbosity=detailed"
+          --results-directory ./test-results
     
     - name: Generate Code Coverage Report
       uses: danielpalme/ReportGenerator-GitHub-Action@v5
