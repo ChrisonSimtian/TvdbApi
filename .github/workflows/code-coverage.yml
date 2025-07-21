@@ -34,16 +34,13 @@ jobs:
           --logger "trx;LogFileName=TestResults.trx" \
           --logger "console;verbosity=detailed"
     
-    - name: Install ReportGenerator
-      run: dotnet tool install -g dotnet-reportgenerator-globaltool
-    
-    - name: Generate coverage report
-      run: |
-        reportgenerator \
-          -reports:"./test-results/**/coverage.cobertura.xml" \
-          -targetdir:"./coverage-report" \
-          -reporttypes:"Html;Cobertura;MarkdownSummaryGithub"
-    
+    - name: Generate Code Coverage Report
+      uses: danielpalme/ReportGenerator-GitHub-Action@v5
+      with:
+        reports: ./test-results/**/coverage.cobertura.xml
+        targetdir: ./coverage-report
+        reporttypes: Html;Cobertura;MarkdownSummaryGithub
+
     - name: Upload test results
       uses: actions/upload-artifact@v4
       if: always()
