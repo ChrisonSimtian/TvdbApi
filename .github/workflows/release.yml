@@ -5,6 +5,11 @@ on:
     branches: [ release, release/* ] # Trigger on release branch(es)
   workflow_dispatch: # Allows manual trigger from any branch
 
+permissions:
+  contents: write
+  packages: write
+  pull-requests: read
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -93,6 +98,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Download artifacts
       uses: actions/download-artifact@v4
@@ -124,20 +132,11 @@ jobs:
         echo "## NuGet Package" >> release_notes.md
         echo "This release is available on NuGet:" >> release_notes.md
         echo '```' >> release_notes.md
-        echo "dotnet add package YourPackageName --version ${{ needs.build-and-test.outputs.version }}" >> release_notes.md
+        echo "dotnet add package TvdbClient --version ${{ needs.build-and-test.outputs.version }}" >> release_notes.md
         echo '```' >> release_notes.md
     
-    - name: Create Git Tag
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a "v${{ needs.build-and-test.outputs.simple-version }}" -m "Release v${{ needs.build-and-test.outputs.simple-version }}"
-        git push origin "v${{ needs.build-and-test.outputs.simple-version }}"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: v${{ needs.build-and-test.outputs.simple-version }}
         name: Release v${{ needs.build-and-test.outputs.simple-version }}
@@ -148,5 +147,7 @@ jobs:
           ./packages/*.tar.gz
         draft: false
         prerelease: ${{ contains(needs.build-and-test.outputs.version, '-') }}
+        generate_release_notes: true
+        make_latest: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
