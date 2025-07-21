@@ -36,7 +36,7 @@ jobs:
     - name: Generate Code Coverage Report
       uses: danielpalme/ReportGenerator-GitHub-Action@v5
       with:
-        reports: ./test-results/**/coverage.cobertura.xml
+        reports: '**/*.coverage'
         targetdir: ./coverage-report
         reporttypes: Html;Cobertura;MarkdownSummaryGithub
 
@@ -46,15 +46,15 @@ jobs:
       with:
         name: test-results
         path: |
-          ./test-results/**/*.trx
-          ./coverage-report/**/*
+          **/*.trx
+          **/*.coverage
     
     - name: Publish test results
       uses: dorny/test-reporter@v1
       if: always()
       with:
         name: Test Results
-        path: './test-results/**/*.trx'
+        path: '**/*.trx'
         reporter: dotnet-trx
     
     - name: Code Coverage Report
