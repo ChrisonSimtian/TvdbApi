@@ -50,3 +50,13 @@ Register TVDB Client with your DI of choice:
 ## Versioning
 
 I try my best to align the version of this library to the latest TVDB version on their Github repository to make it easy to see which version this client is compatible with.
+
+### Git Version
+
+This project uses [GitVersion](https://gitversion.net/docs/usage) for automatic semantic versioning.
+
+To view version information for a project, just run this command:
+
+``` bash
+dotnet-gitversion
+```

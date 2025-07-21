@@ -6,13 +6,22 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup Label="Versioning">
-    <PackageReference Include="Nerdbank.GitVersioning" Condition="!Exists('packages.config')">
-      <PrivateAssets>all</PrivateAssets>
-      <Version>3.7.115</Version>
-    </PackageReference>
-  </ItemGroup>
   <PropertyGroup Label="Variables">
     <CurrentYear>$([System.DateTime]::Now.ToString("yyyy"))</CurrentYear>
+  </PropertyGroup>
+  
+  <PropertyGroup Label="GitVersion Integration">
+    <!-- Enable GitVersion integration for local builds -->
+    <EnableGitVersionTask Condition="'$(GITHUB_ACTIONS)' != 'true'">true</EnableGitVersionTask>
+    <!-- Use static fallback version when GitVersion is not available -->
+    <Version Condition="'$(GitVersion_FullSemVer)' == ''">4.7.10</Version>
+    <AssemblyVersion Condition="'$(GitVersion_AssemblySemVer)' == ''">4.7.10.0</AssemblyVersion>
+    <FileVersion Condition="'$(GitVersion_AssemblySemVer)' == ''">4.7.10.0</FileVersion>
+    <InformationalVersion Condition="'$(GitVersion_InformationalVersion)' == ''">4.7.10</InformationalVersion>
+    <!-- Use GitVersion values when available -->
+    <Version Condition="'$(GitVersion_FullSemVer)' != ''">$(GitVersion_FullSemVer)</Version>
+    <AssemblyVersion Condition="'$(GitVersion_AssemblySemVer)' != ''">$(GitVersion_AssemblySemVer)</AssemblyVersion>
+    <FileVersion Condition="'$(GitVersion_AssemblySemVer)' != ''">$(GitVersion_AssemblySemVer)</FileVersion>
+    <InformationalVersion Condition="'$(GitVersion_InformationalVersion)' != ''">$(GitVersion_InformationalVersion)</InformationalVersion>
   </PropertyGroup>
 </Project>

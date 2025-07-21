@@ -5,34 +5,44 @@ on:
     branches: [ release, release/* ] # Trigger on release branch(es)
   workflow_dispatch: # Allows manual trigger from any branch
 
+permissions:
+  contents: write
+  packages: write
+  pull-requests: read
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     
     outputs:
-      version: ${{ steps.nbgv.outputs.SemVer2 }}
-      simple-version: ${{ steps.nbgv.outputs.SimpleVersion }}
+      version: ${{ steps.gitversion.outputs.fullSemVer }}
+      simple-version: ${{ steps.gitversion.outputs.semVer }}
       
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0 # Full history needed for Nerdbank.GitVersioning
+        fetch-depth: 0 # Full history needed
     
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.x' # Adjust to your .NET version
     
-    - name: Install Nerdbank.GitVersioning
-      run: dotnet tool install -g nbgv
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v4.0.1
+      with:
+        versionSpec: '6.3.x'
     
-    - name: Get Version from Nerdbank.GitVersioning
-      id: nbgv
+    - name: Determine Version
+      id: gitversion
+      uses: gittools/actions/gitversion/execute@v4.0.1
+    
+    - name: Display GitVersion outputs
       run: |
-        nbgv cloud
-        echo "SemVer2=$(nbgv get-version -v SemVer2)" >> $GITHUB_OUTPUT
-        echo "SimpleVersion=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_OUTPUT
-        echo "Version will be: $(nbgv get-version -v SemVer2)"
+        echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
+        echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
+        echo "AssemblySemVer: ${{ steps.gitversion.outputs.assemblySemVer }}"
+        echo "InformationalVersion: ${{ steps.gitversion.outputs.informationalVersion }}"
     
     - name: Restore dependencies
       run: dotnet restore
@@ -41,12 +51,17 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     
     - name: Run TUNIT tests
-      run: dotnet test ./tests --no-build --configuration Release
+      run: dotnet test --no-build --configuration Release
     
     - name: Pack NuGet packages
       run: |
-        dotnet pack ./src --no-build --configuration Release \
-          --output ./packages
+        dotnet pack --no-build --configuration Release \
+          --output ./packages \
+          -p:PackageVersion=${{ steps.gitversion.outputs.fullSemVer }} \
+          -p:Version=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:AssemblyVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:FileVersion=${{ steps.gitversion.outputs.assemblySemVer }} \
+          -p:InformationalVersion=${{ steps.gitversion.outputs.informationalVersion }}
     
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
@@ -83,6 +98,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Download artifacts
       uses: actions/download-artifact@v4
@@ -114,20 +132,11 @@ jobs:
         echo "## NuGet Package" >> release_notes.md
         echo "This release is available on NuGet:" >> release_notes.md
         echo '```' >> release_notes.md
-        echo "dotnet add package YourPackageName --version ${{ needs.build-and-test.outputs.version }}" >> release_notes.md
+        echo "dotnet add package TvdbClient --version ${{ needs.build-and-test.outputs.version }}" >> release_notes.md
         echo '```' >> release_notes.md
     
-    - name: Create Git Tag
-      run: |
-        git config user.name "github-actions[bot]"
-        git config user.email "github-actions[bot]@users.noreply.github.com"
-        git tag -a "v${{ needs.build-and-test.outputs.simple-version }}" -m "Release v${{ needs.build-and-test.outputs.simple-version }}"
-        git push origin "v${{ needs.build-and-test.outputs.simple-version }}"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: v${{ needs.build-and-test.outputs.simple-version }}
         name: Release v${{ needs.build-and-test.outputs.simple-version }}
@@ -138,5 +147,7 @@ jobs:
           ./packages/*.tar.gz
         draft: false
         prerelease: ${{ contains(needs.build-and-test.outputs.version, '-') }}
+        generate_release_notes: true
+        make_latest: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
